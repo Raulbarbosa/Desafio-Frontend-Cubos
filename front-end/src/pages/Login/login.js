@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./login.css";
 
@@ -17,7 +17,27 @@ export default function Login() {
           <Typography className="form-title" variant="h1">
             Faça seu login!
           </Typography>
-          <div className="inputs">inputs</div>
+          <div className="inputs">
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              id="email"
+              type="email"
+              label="E-mail"
+              placeholder="Digite seu e-mail"
+              name="email"
+            />
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              id="password"
+              type="password"
+              label="Senha"
+              placeholder="Digite sua senha"
+              name="password"
+            />
+            <Link className="forgott-password" to={""}>
+              Esqueceu a senha?
+            </Link>
+          </div>
           <Button className="button" variant="contained">
             Entrar
           </Button>
