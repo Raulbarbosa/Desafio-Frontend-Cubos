@@ -38,8 +38,11 @@
 }
 
 .login form {
+  width: 344px;
   display: flex;
   flex-direction: column;
+
+  align-items: center;
 }
 
 .login .form-title {
@@ -52,12 +55,21 @@
 }
 
 .login .inputs {
+  width: 100%;
   display: flex;
-  margin-bottom: 45px;
+  flex-direction: column;
+
+  gap: 20px;
+  margin-bottom: 50px;
+
+  position: relative;
 }
 
 .forgott-password {
   position: absolute;
+
+  left: 0;
+  bottom: -25px;
 }
 
 .login .button {
