@@ -1,9 +1,65 @@
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  --background-color1: #f8f8f9;
+  --button-color: #da0175;
+  --link-color: #da0175;
+  --span-color: #3f3f55;
+  --title-color: #343447;
+  --label-color: #344054;
+  --input-border-color: #667085;
+  --placeholder-color: #d0d5dd;
+}
+
 .container {
   min-height: 100vh;
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.container .button {
+  background-color: var(--button-color);
+  border-radius: 10px;
+  text-transform: none;
+
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+
+  color: #f8f8f9;
+
+  margin-bottom: 15px;
+}
+
+.container .button:hover {
+  background: #c4056b;
+}
+
+.container a {
+  color: var(--link-color);
+
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
 }

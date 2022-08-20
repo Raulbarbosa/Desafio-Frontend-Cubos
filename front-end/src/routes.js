@@ -1,5 +1,6 @@
 import { Routes, Route, Outlet, Navigate, Link } from "react-router-dom";
 import { Provider } from "./contexts/context";
+import Login from "./pages/Login/login";
 
 function ProtectedRoutes({ redirectTo }) {
   const isAuth = false;
@@ -21,6 +22,7 @@ export default function MainRoutes() {
             </div>
           }
         />
+        <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoutes redirectTo="/login" />}></Route>
       </Routes>
     </Provider>
