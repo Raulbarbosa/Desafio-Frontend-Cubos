@@ -1,8 +1,10 @@
 import { Button, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   return (
     <div className="container login">
       <div className="left-image">
@@ -38,7 +40,11 @@ export default function Login() {
               Esqueceu a senha?
             </Link>
           </div>
-          <Button className="button" variant="contained">
+          <Button
+            onClick={() => navigate("/dashboard")}
+            className="button"
+            variant="contained"
+          >
             Entrar
           </Button>
           <Typography variant="span">
