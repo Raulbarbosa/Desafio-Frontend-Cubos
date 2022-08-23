@@ -48,7 +48,8 @@ export default function Login() {
             Entrar
           </Button>
           <Typography variant="span">
-            Ainda não possui uma conta? <Link to={"/"}>Cadastre-se</Link>
+            Ainda não possui uma conta?{" "}
+            <Link to={"/cadastro"}>Cadastre-se</Link>
           </Typography>
         </form>
       </div>
