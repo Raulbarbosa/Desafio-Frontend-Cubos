@@ -18,43 +18,423 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   height: 82px;
+  width: 108px;
+  margin-top: 20px;
+  gap: 12px;
 }
 
-.sidebar-nav .active {
+.sidebar-nav.active {
   border-right: 2px solid #da0175;
 }
 
 .sidebar-nav-title {
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    color: #343447;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--title-color);
 }
 
-.sidebar-nav-title .active {
+.sidebar-nav-title.active {
   color: #da0175;
 }
 
 .content-wrapper {
-  width: calc(100vw - 108px);
+  width: 100vw;
   height: 100vh;
+  /* padding: 0 32px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f8f8f9;
 }
 
 .content-header {
-  padding: 32px;
-  height: 112px;
+  min-height: 80px;
+  height: 96px;
+  max-width: 100vw;
+  width: calc(100% - 64px);
+  padding: 0 64px;
+  margin: 0 64px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #acd9c5;
-  margin-top: 8px;
+}
+
+.header-title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--title-color);
+}
+
+.header-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.header-profile-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #dedee9;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #0e8750;
+}
+
+.header-profile-name {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: #0e8750;
+}
+
+.content-main {
+  max-width: 100vw;
+  width: calc(100% - 108px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card-summary-wrapper {
+  max-width: 100vw;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 32px;
+  gap: 0 36px;
+}
+
+.card-summary h2 {
+  font-size: 24px;
+  line-height: 130%;
+}
+
+.card-summary h3 {
+  font-size: 18px;
+  line-height: 130%;
+}
+
+.card-summary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  height: 112px;
+  border-radius: 30px;
+  color: var(--span-color);
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+}
+
+.card-summary.paid {
+  background-color: #eef7f7;
+}
+
+.card-summary.overdue {
+  background-color: #ffefef;
+}
+
+.card-summary.preview {
+  background-color: #fcf6dc;
+}
+
+.card-summary-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card-details-wrapper {
+  max-width: 100vw;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  gap: 36px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
+  height: 340px;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(172, 217, 197, 0.25);
+}
+
+.card-details-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 52px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  padding: 0 24px;
+  border-bottom: solid 2px #eff0f7;
+}
+
+.card-details-title {
+  font-size: 18px;
+  margin-left: 24px;
+}
+
+.card-details-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 22px;
+  border-radius: 8px;
+}
+.card-details-value.paid {
+  background-color: #eef7f7;
+  color: #1fa7af;
+}
+
+.card-details-value.overdue {
+  background-color: #ffefef;
+  color: #ff5252;
+}
+
+.card-details-value.preview {
+  background-color: #fcf6dc;
+  color: #c5a605;
+}
+
+.card-details-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 290px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.card-details-body-title {
+  font-size: 16px;
+  line-height: 50px;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eff0f7;
+  padding: 0 24px;
+}
+
+.card-details-body-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-details-body-content-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 40px;
+  letter-spacing: 0.005em;
+  color: #6e6e85;
+  border-bottom: 1px solid #eff0f7;
+}
+
+.card-details-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 36px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-decoration-line: underline;
+  color: #da0175;
+}
+
+.card-clients-wrapper {
+  max-width: 100vw;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 32px;
+  gap: 0 36px;
+}
+
+.card-clients {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
+  height: 340px;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(172, 217, 197, 0.25);
+}
+
+.card-clients-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 52px;
+  gap: 16px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  padding: 0 24px;
+  border-bottom: solid 1px #eff0f7;
+}
+
+.card-clients-title {
+  font-size: 18px;
+}
+
+.card-clients-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 52px;
+  height: 22px;
+  border-radius: 8px;
+}
+
+.card-clients-value.paid {
+  background-color: #eef7f7;
+  color: #1fa7af;
+}
+
+.card-clients-value.overdue {
+  background-color: #ffefef;
+  color: #ff5252;
+}
+
+.card-clients-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 290px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.card-clients-body-title {
+  font-size: 16px;
+  line-height: 50px;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eff0f7;
+  padding: 0 24px;
+}
+
+.card-clients-body-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-clients-body-content-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 40px;
+  letter-spacing: 0.005em;
+  color: #6e6e85;
+  border-bottom: 1px solid #eff0f7;
+}
+
+.card-clients-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 36px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  text-decoration-line: underline;
+  color: #da0175;
 }

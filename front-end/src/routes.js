@@ -1,6 +1,8 @@
-import { Routes, Route, Outlet, Navigate, Link } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { Provider } from "./contexts/context";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/dashboard";
+import Clients from "./pages/Clients/clients";
+import Invoices from "./pages/Invoices/invoices";
 import Login from "./pages/Login/login";
 
 function ProtectedRoutes({ redirectTo }) {
@@ -14,15 +16,13 @@ export default function MainRoutes() {
       <Routes>
         <Route
           path="*"
-          element={
-            <Link to={"/login"}>
-              <h1>Clique aqui para ir ao login</h1>
-            </Link>
-          }
-        />
+          element={<Login />}/>
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoutes redirectTo="/login" />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/invoices" element={<Invoices />} />
         </Route>
       </Routes>
     </Provider>
