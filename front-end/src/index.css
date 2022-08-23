@@ -6,6 +6,7 @@
 
 body {
   --background-color1: #f8f8f9;
+  --background-color2: #f0f0f5;
   --button-color: #da0175;
   --link-color: #da0175;
   --span-color: #3f3f55;
@@ -59,15 +60,15 @@ body {
   color: var(--link-color);
 
   font-family: "Nunito";
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
   line-height: 130%;
 }
 
 .container label {
   font-family: "Nunito";
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 20px;
   color: var(--label-color);
 }
@@ -75,6 +76,7 @@ body {
 .container input {
   padding: 10px 14px;
   background: white;
+  color: #667085;
 
   font-family: "Nunito";
   font-weight: 400;

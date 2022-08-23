@@ -2,6 +2,7 @@ import { Routes, Route, Outlet, Navigate, Link } from "react-router-dom";
 import { Provider } from "./contexts/context";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/login";
+import Register from "./pages/Register/register";
 
 function ProtectedRoutes({ redirectTo }) {
   const isAuth = true;
@@ -21,6 +22,7 @@ export default function MainRoutes() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Register />} />
         <Route element={<ProtectedRoutes redirectTo="/login" />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
