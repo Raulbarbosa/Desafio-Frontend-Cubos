@@ -3,6 +3,7 @@ import { Provider } from "./contexts/context";
 import Dashboard from "./pages/Dashboard/dashboard";
 import Clients from "./pages/Clients/clients";
 import Invoices from "./pages/Invoices/invoices";
+import Register from "./pages/Register/register";
 import Login from "./pages/Login/login";
 import Register from "./pages/Register/register";
 
@@ -19,12 +20,13 @@ export default function MainRoutes() {
           path="*"
           element={<Login />}/>
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Register />} />
         <Route element={<ProtectedRoutes redirectTo="/login" />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/clientes" element={<Clients />} />
+          <Route path="/cobrancas" element={<Invoices />} />
         </Route>
       </Routes>
     </Provider>

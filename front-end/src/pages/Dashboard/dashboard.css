@@ -2,31 +2,34 @@
   min-width: 1440px;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: row;
 }
 
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 108px;
   background-color: #f0f0f5;
 }
 
 .sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
   height: 82px;
   width: 108px;
   margin-top: 20px;
   gap: 12px;
+  cursor: pointer;
+  border-right: solid 2px #f0f0f5;
+}
+
+.sidebar-nav img {
+  max-height: 48px;
+  max-width: 48px;
 }
 
 .sidebar-nav.active {
   border-right: 2px solid #da0175;
+}
+
+.sidebar-nav.active img {
+  max-height: 48px;
+  max-width: 48px;
 }
 
 .sidebar-nav-title {
@@ -43,31 +46,21 @@
 }
 
 .content-wrapper {
-  width: 100vw;
-  height: 100vh;
-  /* padding: 0 32px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  width: 100%;
+  max-width: calc(100vw - 108px);
+  padding: 0 32px;
   background-color: #f8f8f9;
 }
 
 .content-header {
   min-height: 80px;
-  height: 96px;
-  max-width: 100vw;
-  width: calc(100% - 64px);
-  padding: 0 64px;
-  margin: 0 64px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  height: 80px;
+  width: 100%;
   border-bottom: 1px solid #acd9c5;
 }
 
 .header-title {
+  margin-left: 36px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
@@ -78,17 +71,11 @@
 }
 
 .header-profile {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
   gap: 12px;
+  margin-right: 64px;
 }
 
 .header-profile-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -111,23 +98,14 @@
 }
 
 .content-main {
-  max-width: 100vw;
-  width: calc(100% - 108px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  max-width: calc(100vw - 108px);
+  width: 100%;
 }
 
 .card-summary-wrapper {
   max-width: 100vw;
   width: 100%;
   margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 32px;
   gap: 0 36px;
 }
 
@@ -142,10 +120,6 @@
 }
 
 .card-summary {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   flex-grow: 1;
   height: 112px;
   border-radius: 30px;
@@ -153,43 +127,34 @@
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
+  padding: 0 40px;
+  gap: 40px
+}
+
+.card-summary-header {
+  margin-left: calc(20% - 40px);
 }
 
 .card-summary.paid {
-  background-color: #eef7f7;
+  background-color: var(--color-aqua-light)
 }
 
 .card-summary.overdue {
-  background-color: #ffefef;
+  background-color: var(--color-red-light)
 }
 
 .card-summary.preview {
-  background-color: #fcf6dc;
-}
-
-.card-summary-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  background-color: var(--color-yellow-light)
 }
 
 .card-details-wrapper {
   max-width: 100vw;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 32px;
+  padding: 24px 0;
   gap: 36px;
 }
 
 .card-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-grow: 1;
   height: 340px;
   border-radius: 30px;
@@ -198,10 +163,6 @@
 }
 
 .card-details-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   height: 52px;
   font-family: "Montserrat";
@@ -218,33 +179,26 @@
 }
 
 .card-details-value {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 52px;
   height: 22px;
   border-radius: 8px;
 }
 .card-details-value.paid {
-  background-color: #eef7f7;
-  color: #1fa7af;
+  background-color: var(--color-aqua-light);
+  color: var(--color-aqua-dark);
 }
 
 .card-details-value.overdue {
-  background-color: #ffefef;
-  color: #ff5252;
+  background-color: var(--color-red-light);
+  color: var(--color-red-dark);
 }
 
 .card-details-value.preview {
-  background-color: #fcf6dc;
-  color: #c5a605;
+  background-color:  var(--color-yellow-light);
+  color:  var(--color-yellow-dark);
 }
 
 .card-details-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
   height: 290px;
   font-family: "Nunito";
@@ -258,25 +212,15 @@
   line-height: 50px;
   width: 100%;
   height: 52px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid #eff0f7;
   padding: 0 24px;
 }
 
 .card-details-body-content {
-  display: flex;
-  flex-direction: column;
   width: 100%;
 }
 
 .card-details-body-content-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   height: 48px;
   padding: 0 24px;
@@ -291,10 +235,6 @@
 }
 
 .card-details-footer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 36px;
   font-family: "Nunito";
@@ -302,8 +242,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
   text-decoration-line: underline;
   color: #da0175;
 }
@@ -311,19 +249,10 @@
 .card-clients-wrapper {
   max-width: 100vw;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 32px;
   gap: 0 36px;
 }
 
 .card-clients {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-grow: 1;
   height: 340px;
   border-radius: 30px;
@@ -332,10 +261,6 @@
 }
 
 .card-clients-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
   height: 52px;
   gap: 16px;
@@ -352,9 +277,6 @@
 }
 
 .card-clients-value {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   margin-left: auto;
   width: 52px;
   height: 22px;
@@ -372,10 +294,6 @@
 }
 
 .card-clients-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
   height: 290px;
   font-family: "Nunito";
@@ -389,25 +307,15 @@
   line-height: 50px;
   width: 100%;
   height: 52px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid #eff0f7;
   padding: 0 24px;
 }
 
 .card-clients-body-content {
-  display: flex;
-  flex-direction: column;
   width: 100%;
 }
 
 .card-clients-body-content-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   height: 48px;
   padding: 0 24px;
@@ -422,10 +330,6 @@
 }
 
 .card-clients-footer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 36px;
   font-family: "Nunito";
