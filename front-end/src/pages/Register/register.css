@@ -4,7 +4,7 @@
 
 .stepper {
   min-height: 100vh;
-  background: #f0f0f5;
+  background: var(--background-color-2);
   width: 35%;
 
   display: flex;
@@ -43,7 +43,7 @@
   font-size: 18px;
   line-height: 130%;
 
-  color: #0e8750;
+  color: var(--color-success);
 }
 
 .step p {
@@ -51,12 +51,12 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 130%;
-  color: #3f3f55;
+  color: var(--color-grey-2);
 }
 
 .line {
   height: 40px;
-  border-right: 3px solid #0e8750;
+  border-right: 3px solid var(--color-success);
 }
 
 .register .content {
@@ -90,9 +90,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
 
-  margin-bottom: 45px;
+  margin-bottom: 50px;
 }
 
 .register .input {
@@ -121,7 +120,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 130%;
-  color: var(--span-color);
+  color: var(--color-grey-2);
 }
 
 .register .success {

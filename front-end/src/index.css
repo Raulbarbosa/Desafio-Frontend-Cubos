@@ -6,11 +6,7 @@
 
 body {
   --background-color1: #f8f8f9;
-  --background-color2: #f0f0f5;
-  --button-color: #da0175;
-  --link-color: #da0175;
-  --span-color: #3f3f55;
-  --title-color: #343447;
+  --background-color-2: #f0f0f5;
   --label-color: #344054;
   --input-border-color: #d0d5dd;
   --placeholder-color: #667085;
@@ -29,6 +25,8 @@ body {
   --color-grey-6: #dedee9;
   --color-grey-7: #f0f0f5;
   --color-grey-8: #f8f8f9;
+  --color-green-1: #034a2a;
+  --color-success: #0e8750;
 }
 
 .container {
@@ -113,7 +111,7 @@ body {
 }
 
 .container .button {
-  background-color: var(--button-color);
+  background-color: var(--color-pink);
   border-radius: 10px;
   text-transform: none;
   font-family: "Nunito";
@@ -129,11 +127,15 @@ body {
 }
 
 .container a {
-  color: var(--link-color);
+  color: var(--color-pink);
   font-family: "Nunito";
   font-weight: 600;
   font-size: 16px;
   line-height: 130%;
+}
+
+.container .inputs {
+  gap: 35px;
 }
 
 .container label {
