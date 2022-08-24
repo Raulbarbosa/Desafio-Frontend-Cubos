@@ -13,6 +13,21 @@ body {
   --label-color: #344054;
   --input-border-color: #d0d5dd;
   --placeholder-color: #667085;
+  --color-red-light: #FFEFEF;
+  --color-red-dark: #971D1D;
+  --color-aqua-light: #EEF7F7;
+  --color-aqua-dark: #1FA7AF;
+  --color-yellow-light: #FCF6DC;
+  --color-yellow-dark: #C5A605;
+  --color-pink: #DA0175;
+  --color-grey-1: #343447;
+  --color-grey-2: #3f3f55;
+  --color-grey-3: #747488;
+  --color-grey-4: #9B9BB2;
+  --color-grey-5: #C8C8D7;
+  --color-grey-6: #DEDEE9;
+  --color-grey-7: #F0F0F5;
+  --color-grey-8: #F8F8F9;
 }
 
 .container {
@@ -24,30 +39,87 @@ body {
   display: flex;
 }
 
-.spaceBetween {
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.inline-row {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.justify-between {
   justify-content: space-between;
 }
 
-.justifyCenter {
+.justify-center {
   justify-content: center;
 }
 
-.alignCenter {
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.align-center {
   align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.title-1 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 130%;
+  color: var(--title-grey-2);
+}
+
+.subtitle {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--title-grey-2);
+  letter-spacing: 0.005em;
+}
+
+.text-body {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--title-grey-3);
+  letter-spacing: 0.005em;
 }
 
 .container .button {
   background-color: var(--button-color);
   border-radius: 10px;
   text-transform: none;
-
   font-family: "Nunito";
   font-weight: 400;
   font-size: 18px;
   line-height: 25px;
-
   color: #f8f8f9;
-
   margin-bottom: 15px;
 }
 
@@ -57,7 +129,6 @@ body {
 
 .container a {
   color: var(--link-color);
-
   font-family: "Nunito";
   font-weight: 400;
   font-size: 14px;
@@ -75,7 +146,6 @@ body {
 .container input {
   padding: 10px 14px;
   background: white;
-
   font-family: "Nunito";
   font-weight: 400;
   font-size: 16px;
