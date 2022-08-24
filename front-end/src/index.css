@@ -6,6 +6,7 @@
 
 body {
   --background-color1: #f8f8f9;
+  --background-color2: #f0f0f5;
   --button-color: #da0175;
   --link-color: #da0175;
   --span-color: #3f3f55;
@@ -13,21 +14,21 @@ body {
   --label-color: #344054;
   --input-border-color: #d0d5dd;
   --placeholder-color: #667085;
-  --color-red-light: #FFEFEF;
-  --color-red-dark: #971D1D;
-  --color-aqua-light: #EEF7F7;
-  --color-aqua-dark: #1FA7AF;
-  --color-yellow-light: #FCF6DC;
-  --color-yellow-dark: #C5A605;
-  --color-pink: #DA0175;
+  --color-red-light: #ffefef;
+  --color-red-dark: #971d1d;
+  --color-aqua-light: #eef7f7;
+  --color-aqua-dark: #1fa7af;
+  --color-yellow-light: #fcf6dc;
+  --color-yellow-dark: #c5a605;
+  --color-pink: #da0175;
   --color-grey-1: #343447;
   --color-grey-2: #3f3f55;
   --color-grey-3: #747488;
-  --color-grey-4: #9B9BB2;
-  --color-grey-5: #C8C8D7;
-  --color-grey-6: #DEDEE9;
-  --color-grey-7: #F0F0F5;
-  --color-grey-8: #F8F8F9;
+  --color-grey-4: #9b9bb2;
+  --color-grey-5: #c8c8d7;
+  --color-grey-6: #dedee9;
+  --color-grey-7: #f0f0f5;
+  --color-grey-8: #f8f8f9;
 }
 
 .container {
@@ -130,15 +131,15 @@ body {
 .container a {
   color: var(--link-color);
   font-family: "Nunito";
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
   line-height: 130%;
 }
 
 .container label {
   font-family: "Nunito";
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 20px;
   color: var(--label-color);
 }
@@ -146,6 +147,7 @@ body {
 .container input {
   padding: 10px 14px;
   background: white;
+  color: var(--placeholder-color);
   font-family: "Nunito";
   font-weight: 400;
   font-size: 16px;

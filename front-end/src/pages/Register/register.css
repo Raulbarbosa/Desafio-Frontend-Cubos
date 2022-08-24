@@ -1,0 +1,139 @@
+.register {
+  background-color: var(--background-color1);
+}
+
+.stepper {
+  min-height: 100vh;
+  background: #f0f0f5;
+  width: 35%;
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  padding-top: 150px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stepper-content {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 26.5px;
+}
+
+.icons * {
+  margin-bottom: 4px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step h1 {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 130%;
+
+  color: #0e8750;
+}
+
+.step p {
+  font-family: "Nunito";
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 130%;
+  color: #3f3f55;
+}
+
+.line {
+  height: 40px;
+  border-right: 3px solid #0e8750;
+}
+
+.register .content {
+  width: 65%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 368px;
+}
+
+.register form h1 {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 130%;
+  margin-bottom: 30px;
+}
+
+.register .inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  margin-bottom: 45px;
+}
+
+.register .input {
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.register .input img {
+  position: absolute;
+
+  width: 25px;
+  cursor: pointer;
+  right: 16px;
+}
+
+.register form .button {
+  width: 190px;
+}
+
+.register span {
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 130%;
+  color: var(--span-color);
+}
+
+.register .success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line-stepper {
+  display: flex;
+  gap: 8px;
+
+  position: absolute;
+  bottom: 64px;
+}
