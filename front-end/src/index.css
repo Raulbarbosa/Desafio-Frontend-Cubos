@@ -82,6 +82,10 @@ body {
   align-items: flex-end;
 }
 
+.self-start {
+  justify-content: flex-start;
+}
+
 .title-1 {
   font-family: "Montserrat";
   font-style: normal;
