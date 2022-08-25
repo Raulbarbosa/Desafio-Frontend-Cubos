@@ -52,51 +52,6 @@
   background-color: #f8f8f9;
 }
 
-.content-header {
-  min-height: 80px;
-  height: 80px;
-  width: 100%;
-  border-bottom: 1px solid #acd9c5;
-}
-
-.header-title {
-  margin-left: 36px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 130%;
-  text-align: center;
-  color: var(--title-color);
-}
-
-.header-profile {
-  gap: 12px;
-  margin-right: 64px;
-}
-
-.header-profile-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #dedee9;
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  color: #0e8750;
-}
-
-.header-profile-name {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 25px;
-  color: #0e8750;
-}
-
 .content-main {
   max-width: calc(100vw - 108px);
   width: 100%;

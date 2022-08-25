@@ -4,12 +4,12 @@ import iconHome from "../../assets/icons/icon-home.svg";
 import iconClientsSelected from "../../assets/icons/icon-clients-selected.svg";
 import iconClients from "../../assets/icons/icon-clients.svg";
 import iconInvoices from "../../assets/icons/icon-invoices.png";
-import headerIconOptions from "../../assets/icons/header-icon-options.svg";
 import iconFilter from "../../assets/icons/icon-clients-filter.svg";
 import iconSearch from "../../assets/icons/icon-clients-search.svg";
 import iconSort from "../../assets/icons/icon-sort.svg";
 import iconAddInvoice from "../../assets/icons/icon-add-invoice.svg";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 function Clients() {
   const navigate = useNavigate();
@@ -43,22 +43,7 @@ function Clients() {
         </div>
       </div>
       <div className="content-wrapper flex-column align-center justify-start">
-        <div className="content-header flex-row justify-between align-center">
-          <h1 className="header-subtitle flex-row align-center justify-end">
-            Clientes
-          </h1>
-          <div className="header-profile flex-row align-center justify-end">
-            <div className="header-profile-avatar flex align-center justify-center">
-              <span>PC</span>
-            </div>
-            <span className="header-profile-name">Philippi</span>
-            <img
-              className="header-icon-options"
-              src={headerIconOptions}
-              alt="Opções"
-            />
-          </div>
-        </div>
+        <Header title="Clientes" titleClass="subtitle-2"/>
         <div className="content-main flex-column align-center justify-start">
           <div className="content-main-header flex-row align-center justify-start">
             <img

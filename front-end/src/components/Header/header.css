@@ -1,0 +1,148 @@
+.content-header {
+  min-height: 80px;
+  height: 80px;
+  width: 100%;
+  border-bottom: 1px solid #acd9c5;
+}
+
+.header-title {
+  margin-left: 36px;
+  text-align: center;
+  color: var(--title-color);
+}
+
+.header-profile {
+  gap: 12px;
+  margin-right: 64px;
+}
+
+.header-profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #dedee9;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #0e8750;
+}
+
+.header-profile-name {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: #0e8750;
+}
+
+.header-profile-options img {
+  cursor: pointer;
+}
+
+.profile-options-wrapper {
+  position: absolute;
+  display: none;
+  padding-top: 6px;
+  top: 55px;
+  right: 30px;
+  width: 92px;
+  height: 60px;
+  gap: 16px;
+  background-image: url("../../assets/icons/popup-profile-options.png");
+  filter: drop-shadow(0px 4px 42px rgba(0, 0, 0, 0.2));
+}
+
+.profile-modal-wrapper {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.profile-modal {
+  position: absolute;
+  top: calc(50% - 320px);
+  left: calc(50% - 245px);
+  width: 490px;
+  height: 640px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 32px 64px;
+  gap: 4px;
+}
+
+.profile-modal-title {
+  align-self: center;
+  margin-bottom: 8px;
+}
+
+.profile-modal-close {
+  position: relative;
+  top: -12px;
+  left: 366px;
+  margin-bottom: -36px;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.profile-modal input {
+  width: 368px;
+  height: 44px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border-color);
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  outline: none;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.profile-button {
+  width: 160px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: var(--color-pink);
+  margin-bottom: 12px;
+  cursor: pointer;
+  border: none;
+  align-self: center;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  color: #f8f8f9;
+}
+
+.profile-button:focus {
+  outline: none;
+}
+
+.tooltip {
+  position: absolute;
+  min-width: 240px;
+  top: 24px;
+  left: 440px;
+  display: none;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-grey-3);
+  letter-spacing: 0.005em;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px;
+}
