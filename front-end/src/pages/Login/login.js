@@ -35,7 +35,6 @@ export default function Login() {
 
     try {
       const response = await api.post("/login", formData);
-      console.log(response.data);
 
       setItem("token", response.data.token);
 
