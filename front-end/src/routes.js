@@ -15,9 +15,7 @@ export default function MainRoutes() {
   return (
     <Provider>
       <Routes>
-        <Route
-          path="*"
-          element={<Login />}/>
+        <Route path="*" element={<Login />} />
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Register />} />

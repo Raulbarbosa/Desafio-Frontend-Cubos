@@ -27,7 +27,7 @@
   font-size: 24px;
   line-height: 138%;
 
-  color: #034a2a;
+  color: var(--color-grey-1);
 }
 
 .login .content {
@@ -38,7 +38,7 @@
 }
 
 .login form {
-  width: 344px;
+  width: 368px;
   display: flex;
   flex-direction: column;
 
@@ -46,7 +46,7 @@
 }
 
 .login .form-title {
-  color: var(--title-color);
+  color: var(--color-grey-1);
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 24px;
@@ -59,7 +59,6 @@
   display: flex;
   flex-direction: column;
 
-  gap: 20px;
   margin-bottom: 50px;
 
   position: relative;
@@ -73,14 +72,13 @@
 }
 
 .login .button {
-  padding: 4px 55px;
-  max-width: 160px;
+  width: 190px;
 }
 
 .login span {
-  color: var(--span-color);
+  color: var(--color-grey-2);
   font-family: "Nunito";
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 130%;
 }
