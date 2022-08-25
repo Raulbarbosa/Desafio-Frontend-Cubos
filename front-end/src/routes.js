@@ -1,13 +1,14 @@
-import { Routes, Route, Outlet, Navigate } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { Provider } from "./contexts/context";
-import Dashboard from "./pages/Dashboard/dashboard";
 import Clients from "./pages/Clients/clients";
+import Dashboard from "./pages/Dashboard/dashboard";
 import Invoices from "./pages/Invoices/invoices";
-import Register from "./pages/Register/register";
 import Login from "./pages/Login/login";
+import Register from "./pages/Register/register";
+import { getItem } from './services/storage';
 
 function ProtectedRoutes({ redirectTo }) {
-  const isAuth = true;
+  const isAuth = getItem('token');
   return isAuth ? <Outlet /> : <Navigate to={redirectTo} />;
 }
 
