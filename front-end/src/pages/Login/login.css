@@ -60,15 +60,19 @@
   flex-direction: column;
 
   margin-bottom: 50px;
+}
 
+.container-forgott {
+  width: 100%;
   position: relative;
+  display: flex;
 }
 
 .forgott-password {
   position: absolute;
-
-  left: 0;
-  bottom: -25px;
+  right: 0;
+  top: 46px;
+  bottom: -46px;
 }
 
 .login .button {
