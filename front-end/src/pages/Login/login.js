@@ -25,6 +25,10 @@ export default function Login() {
     setPasswordEmpty(false);
     const { email, senha } = formData;
 
+    if (!email) {
+      return setEmailEmpty(true);
+    }
+
     if (!senha) {
       return setPasswordEmpty(true);
     }
