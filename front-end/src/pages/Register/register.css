@@ -109,6 +109,8 @@
   width: 25px;
   cursor: pointer;
   right: 16px;
+  bottom: 8px;
+  top: 8px;
 }
 
 .register form .button {
