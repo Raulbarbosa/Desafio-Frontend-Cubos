@@ -20,100 +20,97 @@ export default function Register() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    senha: ""
+    senha: "",
   });
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
-
+  const [error, setError] = useState("");
 
   const steps = [
     {
       id: 0,
       label: "Cadastre-se",
-      description: "Por favor, escreva seu nome e e-mail"
+      description: "Por favor, escreva seu nome e e-mail",
     },
     {
       id: 1,
       label: "Escolha uma senha",
-      description: "Escolha uma senha segura"
+      description: "Escolha uma senha segura",
     },
     {
       id: 2,
       label: "Cadastro realizado com sucesso",
-      description: "E-mail e senha cadastrados com sucesso"
+      description: "E-mail e senha cadastrados com sucesso",
     },
-  ]
-
-  const handlerPassword = () => {
-    if (formData.senha === repeatPassword) {
-      setErrorPassword(false)
-    } else {
-      setErrorPassword(true);
-    }
-  }
+  ];
 
   const handleChangeForm = (e) => {
     const value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
-  }
+  };
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
-    if (handlerPassword()) {
-      setErrorPassword(true);
-    } else {
 
-      const { name, email, senha } = formData;
-
-      try {
-        const response = await api.post('/users', {
-          nome: name,
-          email,
-          senha
-        })
-
-        if (!response.error) {
-          setStepIndex(2);
-          setFormData({
-            name: "",
-            email: "",
-            senha: ""
-          })
-          setTimeout(() => {
-            setStepIndex(0)
-          }, 20000)
-        }
-
-      } catch (error) {
-        console.log(error);
-      }
+    if (!formData.senha || !repeatPassword) {
+      setError("preencha todos os campos");
+      return setErrorPassword(true);
     }
-  }
+
+    if (formData.senha !== repeatPassword) {
+      setError("As senhas não coincidem");
+      return setErrorPassword(true);
+    }
+
+    setErrorPassword(false);
+
+    const { name, email, senha } = formData;
+
+    try {
+      const response = await api.post("/users", {
+        nome: name,
+        email,
+        senha,
+      });
+
+      if (!response.error) {
+        setStepIndex(2);
+        setFormData({
+          name: "",
+          email: "",
+          senha: "",
+        });
+        setTimeout(() => {
+          setStepIndex(0);
+        }, 20000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handlerCheckNameEmail = () => {
     if (!formData.name) {
       setErrorName(true);
       setTimeout(() => {
-        setErrorName(false)
-      }, 5000)
+        setErrorName(false);
+      }, 5000);
     } else if (!formData.email) {
       setErrorEmail(true);
       setTimeout(() => {
-        setErrorEmail(false)
-      }, 5000)
+        setErrorEmail(false);
+      }, 5000);
     } else {
-      setStepIndex(stepIndex + 1)
+      setStepIndex(stepIndex + 1);
     }
-
-  }
+  };
 
   return (
     <div className="container register">
       <aside className="stepper">
         <div className="icons">
-
           <img
             src={stepIndex === 0 ? iconActualStep : iconCheckStep}
             alt="step"
@@ -126,8 +123,8 @@ export default function Register() {
               stepIndex === 1
                 ? iconActualStep
                 : stepIndex >= 1
-                  ? iconCheckStep
-                  : iconStep
+                ? iconCheckStep
+                : iconStep
             }
             alt="step"
           />
@@ -143,7 +140,7 @@ export default function Register() {
                 <h1>{item.label}</h1>
                 <p>{item.description}</p>
               </div>
-            )
+            );
           })}
         </div>
       </aside>
@@ -158,30 +155,26 @@ export default function Register() {
                 id="name"
                 name="name"
                 type="text"
-                label="Nome*"
+                label="Nome"
                 required
                 placeholder="Digite seu nome"
                 onChange={(e) => handleChangeForm(e)}
+                error={errorName}
+                helperText={errorName && "Preencha o campo nome"}
               />
-              {
-                errorName &&
-                <span className="error-message">Preencha o nome.</span>
-              }
               <TextField
                 InputLabelProps={{ shrink: true }}
                 fullWidth
                 id="email"
                 name="email"
                 type="email"
-                label="E-mail*"
+                label="E-mail"
                 required
                 placeholder="Digite seu e-mail"
                 onChange={(e) => handleChangeForm(e)}
+                error={errorEmail}
+                helperText={errorEmail && "Preencha o campo do email"}
               />
-              {
-                errorEmail &&
-                <span className="error-message">Preencha o e-mail.</span>
-              }
             </div>
             <Button
               onClick={() => handlerCheckNameEmail()}
@@ -209,6 +202,8 @@ export default function Register() {
                   label="Senha*"
                   placeholder="••••••••"
                   onChange={(e) => handleChangeForm(e)}
+                  error={errorPassword}
+                  helperText={errorPassword && error}
                 />
                 <img
                   onClick={() => setShowPassword(!showPassword)}
@@ -226,6 +221,8 @@ export default function Register() {
                   label="Repita a senha*"
                   placeholder="••••••••"
                   onChange={(e) => setRepeatPassword(e.target.value)}
+                  error={errorPassword}
+                  helperText={errorPassword && error}
                 />
                 <img
                   onClick={() => setConfirm(!confirm)}
@@ -233,13 +230,11 @@ export default function Register() {
                   alt="password-icon"
                 />
               </div>
-              {
-                errorPassword &&
-                <span className="error-message">As senhas não coincidem.</span>
-              }
             </div>
             <Button
-              onClick={(e) => { handlerSubmit(e) }}
+              onClick={(e) => {
+                handlerSubmit(e);
+              }}
               className="button"
               variant="contained"
             >
