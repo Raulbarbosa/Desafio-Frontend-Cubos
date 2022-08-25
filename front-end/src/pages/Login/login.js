@@ -1,61 +1,49 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import api from '../../services/api';
+import api from "../../services/api";
 import "./login.css";
-import { setItem } from '../../services/storage';
+import { setItem } from "../../services/storage";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [userNotFound, setUserNotFound] = useState(false);
-  const [errorEmailEmpty, setErrorEmailEmpty] = useState(false);
-  const [errorPasswordEmpty, setErrorPasswordEmpty] = useState(false);
+  const [emailEmpty, setEmailEmpty] = useState(false);
+  const [passwordEmpty, setPasswordEmpty] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    senha: ""
-  })
+    senha: "",
+  });
 
   const handleChangeForm = (e) => {
     const value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
-  }
+  };
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email) {
-      setErrorEmailEmpty(true);
-    } else if (!formData.senha) {
-      setErrorPasswordEmpty(true);
-    }
-
+    setEmailEmpty(false);
+    setPasswordEmpty(false);
     const { email, senha } = formData;
 
-    try {
-
-      const response = await api.post('/login', {
-        email,
-        senha
-      })
-
-      if (!response.error) {
-        setFormData({
-          email: "",
-          senha: ""
-        })
-
-        setItem("token", response.data.token)
-
-        navigate("/dashboard")
-
-      }
-
-    } catch (error) {
-      console.log(error);
+    if (!senha) {
+      return setPasswordEmpty(true);
     }
 
+    try {
+      const response = await api.post("/login", formData);
+      console.log(response.data);
 
+      setItem("token", response.data.token);
 
-  }
+      navigate("/dashboard");
+    } catch (error) {
+      setFormData({
+        email: "",
+        senha: "",
+      });
+      console.log(error);
+    }
+  };
 
   return (
     <div className="container login">
@@ -73,6 +61,7 @@ export default function Login() {
           </Typography>
           <div className="inputs">
             <TextField
+              fullWidth
               InputLabelProps={{ shrink: true }}
               id="email"
               type="email"
@@ -80,19 +69,26 @@ export default function Login() {
               placeholder="Digite seu e-mail"
               name="email"
               onChange={(e) => handleChangeForm(e)}
+              error={emailEmpty}
+              helperText={emailEmpty && "Preencha o campo email."}
             />
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              id="password"
-              type="password"
-              label="Senha"
-              placeholder="Digite sua senha"
-              name="senha"
-              onChange={(e) => handleChangeForm(e)}
-            />
-            <Link className="forgott-password" to={""}>
-              Esqueceu a senha?
-            </Link>
+            <div className="container-forgott">
+              <TextField
+                fullWidth
+                InputLabelProps={{ shrink: true }}
+                id="password"
+                type="password"
+                label="Senha"
+                placeholder="Digite sua senha"
+                name="senha"
+                onChange={(e) => handleChangeForm(e)}
+                error={passwordEmpty}
+                helperText={passwordEmpty && "Preencha o campo senha."}
+              />
+              <Link className="forgott-password" to={""}>
+                Esqueceu a senha?
+              </Link>
+            </div>
           </div>
           <Button
             onClick={(e) => handlerSubmit(e)}
