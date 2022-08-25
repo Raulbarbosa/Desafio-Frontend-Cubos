@@ -136,3 +136,9 @@
   position: absolute;
   bottom: 64px;
 }
+
+.inputs .error-message {
+  margin-top: 1px;
+  font-size: 12px;
+  color: red;
+}

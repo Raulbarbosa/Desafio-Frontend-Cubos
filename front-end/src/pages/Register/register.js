@@ -1,14 +1,15 @@
-import iconStep from "../../assets/icons/icon-step.svg";
+import { Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import iconActualLine from "../../assets/icons/icon-actual-step-line.svg";
 import iconActualStep from "../../assets/icons/icon-actual-step.svg";
 import iconCheckStep from "../../assets/icons/icon-check.svg";
-import iconActualLine from "../../assets/icons/icon-actual-step-line.svg";
-import iconLine from "../../assets/icons/icon-step-line.svg";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField, Typography } from "@mui/material";
-import iconEye from "../../assets/icons/icon-eye.svg";
 import iconEyeOff from "../../assets/icons/icon-eye-off.svg";
-import { useState } from "react";
+import iconEye from "../../assets/icons/icon-eye.svg";
+import iconLine from "../../assets/icons/icon-step-line.svg";
+import iconStep from "../../assets/icons/icon-step.svg";
 import sucessRegister from "../../assets/register/sucess.png";
+import api from "../../services/api";
 import "./register.css";
 
 export default function Register() {
@@ -16,42 +17,134 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    senha: ""
+  });
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+
+
+  const steps = [
+    {
+      id: 0,
+      label: "Cadastre-se",
+      description: "Por favor, escreva seu nome e e-mail"
+    },
+    {
+      id: 1,
+      label: "Escolha uma senha",
+      description: "Escolha uma senha segura"
+    },
+    {
+      id: 2,
+      label: "Cadastro realizado com sucesso",
+      description: "E-mail e senha cadastrados com sucesso"
+    },
+  ]
+
+  const handlerPassword = () => {
+    if (formData.senha === repeatPassword) {
+      setErrorPassword(false)
+    } else {
+      setErrorPassword(true);
+    }
+  }
+
+  const handleChangeForm = (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
+  }
+
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    if (handlerPassword()) {
+      setErrorPassword(true);
+    } else {
+
+      const { name, email, senha } = formData;
+
+      try {
+        const response = await api.post('/users', {
+          nome: name,
+          email,
+          senha
+        })
+
+        if (!response.error) {
+          setStepIndex(2);
+          setFormData({
+            name: "",
+            email: "",
+            senha: ""
+          })
+          setTimeout(() => {
+            setStepIndex(0)
+          }, 20000)
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  const handlerCheckNameEmail = () => {
+    if (!formData.name) {
+      setErrorName(true);
+      setTimeout(() => {
+        setErrorName(false)
+      }, 5000)
+    } else if (!formData.email) {
+      setErrorEmail(true);
+      setTimeout(() => {
+        setErrorEmail(false)
+      }, 5000)
+    } else {
+      setStepIndex(stepIndex + 1)
+    }
+
+  }
 
   return (
     <div className="container register">
       <aside className="stepper">
         <div className="icons">
+
           <img
             src={stepIndex === 0 ? iconActualStep : iconCheckStep}
             alt="step"
           />
+
           <div className="line"></div>
+
           <img
             src={
               stepIndex === 1
                 ? iconActualStep
                 : stepIndex >= 1
-                ? iconCheckStep
-                : iconStep
+                  ? iconCheckStep
+                  : iconStep
             }
             alt="step"
           />
+
           <div className="line"></div>
+
           <img src={stepIndex === 2 ? iconCheckStep : iconStep} alt="step" />
         </div>
         <div className="stepper-content">
-          <div className="step">
-            <h1>Cadastre-se</h1>
-            <p>Por favor, escreva seu nome e e-mail</p>
-          </div>
-          <div className="step">
-            <h1>Escolha uma senha</h1>
-            <p>Escolha uma senha segura</p>
-          </div>
-          <div className="step">
-            <h1>Cadastro realizado com sucesso</h1>
-            <p>E-mail e senha cadastrados com sucesso</p>
-          </div>
+          {steps.map((item) => {
+            return (
+              <div key={item.id} className="step">
+                <h1>{item.label}</h1>
+                <p>{item.description}</p>
+              </div>
+            )
+          })}
         </div>
       </aside>
       <main className="content">
@@ -66,8 +159,14 @@ export default function Register() {
                 name="name"
                 type="text"
                 label="Nome*"
-                placeholder="Digite sua nome"
+                required
+                placeholder="Digite seu nome"
+                onChange={(e) => handleChangeForm(e)}
               />
+              {
+                errorName &&
+                <span className="error-message">Preencha o nome.</span>
+              }
               <TextField
                 InputLabelProps={{ shrink: true }}
                 fullWidth
@@ -75,11 +174,17 @@ export default function Register() {
                 name="email"
                 type="email"
                 label="E-mail*"
+                required
                 placeholder="Digite seu e-mail"
+                onChange={(e) => handleChangeForm(e)}
               />
+              {
+                errorEmail &&
+                <span className="error-message">Preencha o e-mail.</span>
+              }
             </div>
             <Button
-              onClick={() => setStepIndex(stepIndex + 1)}
+              onClick={() => handlerCheckNameEmail()}
               className="button"
               variant="contained"
             >
@@ -99,10 +204,11 @@ export default function Register() {
                   InputLabelProps={{ shrink: true }}
                   fullWidth
                   id="password"
-                  name="password"
+                  name="senha"
                   type={showPassword ? "text" : "password"}
                   label="Senha*"
                   placeholder="••••••••"
+                  onChange={(e) => handleChangeForm(e)}
                 />
                 <img
                   onClick={() => setShowPassword(!showPassword)}
@@ -119,6 +225,7 @@ export default function Register() {
                   type={confirm ? "text" : "password"}
                   label="Repita a senha*"
                   placeholder="••••••••"
+                  onChange={(e) => setRepeatPassword(e.target.value)}
                 />
                 <img
                   onClick={() => setConfirm(!confirm)}
@@ -126,9 +233,13 @@ export default function Register() {
                   alt="password-icon"
                 />
               </div>
+              {
+                errorPassword &&
+                <span className="error-message">As senhas não coincidem.</span>
+              }
             </div>
             <Button
-              onClick={() => setStepIndex(stepIndex + 1)}
+              onClick={(e) => { handlerSubmit(e) }}
               className="button"
               variant="contained"
             >
