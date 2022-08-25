@@ -3,9 +3,10 @@ import headerIconOptions from "../../assets/icons/header-icon-options.svg";
 import profileIconEdit from "../../assets/icons/profile-icon-edit.svg";
 import profileIconLogout from "../../assets/icons/profile-icon-logout.svg";
 import iconClose from "../../assets/icons/icon-close.svg";
+import imgUpdateSuccess from "../../assets/icons/img-update-success.svg";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { removeItem, getItem } from "../../services/storage";
 
 function Header({ title, titleClass }) {
@@ -43,7 +44,7 @@ function Header({ title, titleClass }) {
 
   function handleCloseModal() {
     document.querySelector(".profile-modal-wrapper").style.display = "none";
-    setUserForm({});
+    document.querySelector(".confirmation-modal").style.display = "none";
   }
 
   function showTooltip(event) {
@@ -64,34 +65,86 @@ function Header({ title, titleClass }) {
     });
   }
 
+  function parseName(input) {
+    var fullName = input || "";
+    var result = {};
+
+    if (fullName.length > 0) {
+      var nameTokens =
+        fullName.match(
+          /[A-ZÁ-ÚÑÜ][a-zá-úñü]+|([aeodlsz]+\s+)+[A-ZÁ-ÚÑÜ][a-zá-úñü]+/g
+        ) || [];
+
+      if (nameTokens.length > 3) {
+        result.name = nameTokens.slice(0, 2).join(" ");
+      } else {
+        result.name = nameTokens.slice(0, 1).join(" ");
+      }
+
+      if (nameTokens.length > 2) {
+        result.lastName = nameTokens.slice(-2, -1).join(" ");
+        result.secondLastName = nameTokens.slice(-1).join(" ");
+      } else {
+        result.lastName = nameTokens.slice(-1).join(" ");
+        result.secondLastName = "";
+      }
+    }
+    return result;
+  }
+
+  async function getUserData() {
+    const response = await api.get("/users/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setUserForm({
+      nome: response.data.nome,
+      email: response.data.email,
+      telefone: response.data.telefone,
+      cpf: response.data.cpf,
+    });
+  }
+
+  useEffect(() => {
+    getUserData();
+  });
+
   async function handleUpdateUser(event) {
     event.preventDefault();
-    console.log(userForm);
     try {
-    const response = await api.put('/users', {
-        ...userForm,
-    }, {
-        headers: {
-            Authorization: `Bearer ${token}`
+      const response = await api.put(
+        "/users/",
+        {
+          ...userForm,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-    });
-    setError(`${response.data.message}`);
-    setTimeout(() => {            
-    handleCloseModal()
-    }, 1000);
+      );
+      setError(`${response.data.message}`);
+      document.querySelector(".profile-modal-wrapper").style.display = "none";
+      document.querySelector(".confirmation-modal").style.display = "flex";
+      setTimeout(() => {
+        handleCloseModal();
+      }, 2000);
     } catch (err) {
-        setError(err.response.data.error);
+      setError(err.response.data.error);
     }
-}
+  }
 
   return (
     <div className="content-header flex-row justify-between align-center">
-      <h1 className={titleClass} style={{marginLeft:"36px"}}>{title}</h1>
+      <h1 className={titleClass} style={{ marginLeft: "36px" }}>
+        {title}
+      </h1>
       <div className="header-profile flex-row align-center justify-end">
         <div className="header-profile-avatar flex-row align-center justify-center">
           <span>PC</span>
         </div>
-        <span className="header-profile-name">Philippi</span>
+        <span className="header-profile-name">{parseName(userForm.nome).name}</span>
         <div className="header-profile-options">
           <img
             className="header-icon-options"
@@ -123,7 +176,11 @@ function Header({ title, titleClass }) {
             alt="Fechar"
             onClick={handleCloseModal}
           />
-          <form className="flex-column" style={{ gap: "4px" }} onSubmit={handleUpdateUser}>
+          <form
+            className="flex-column"
+            style={{ gap: "4px" }}
+            onSubmit={handleUpdateUser}
+          >
             <span className="profile-modal-title title-2">
               Edite seu cadastro
             </span>
@@ -131,6 +188,7 @@ function Header({ title, titleClass }) {
             <input
               name="nome"
               type="text"
+              value={userForm.nome ? userForm.nome : ""}
               className="input-text"
               placeholder="Digite seu nome"
               onChange={handleChangeInput}
@@ -140,6 +198,7 @@ function Header({ title, titleClass }) {
             <input
               name="email"
               type="text"
+              value={userForm.email ? userForm.email : ""}
               className="input-text"
               placeholder="Digite seu e-mail"
               onChange={handleChangeInput}
@@ -153,6 +212,7 @@ function Header({ title, titleClass }) {
                 <input
                   name="cpf"
                   type="number"
+                  value={userForm.cpf ? userForm.cpf : ""}
                   style={{ width: "178px" }}
                   className="input-text"
                   placeholder="Digite seu CPF"
@@ -169,6 +229,7 @@ function Header({ title, titleClass }) {
                 <input
                   name="telefone"
                   type="number"
+                  value={userForm.telefone ? userForm.telefone : ""}
                   style={{ width: "178px" }}
                   className="input-text"
                   placeholder="Digite seu Telefone"
@@ -211,7 +272,7 @@ function Header({ title, titleClass }) {
                 placeholder="••••••••"
                 onFocus={showTooltip}
                 onBlur={hideTooltip}
-                onChange={handleChangeInput}
+                // onChange={handleChangeInput}
               />
               <span className="tooltip">
                 A senha deve conter um caracter maiúsculo, um caracter
@@ -224,6 +285,9 @@ function Header({ title, titleClass }) {
             </button>
           </form>
         </div>
+      </div>
+      <div className="confirmation-modal align-center justify-center">
+        <img src={imgUpdateSuccess} alt="Sucesso" />
       </div>
     </div>
   );
