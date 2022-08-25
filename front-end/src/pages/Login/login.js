@@ -1,11 +1,12 @@
 import { Button, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../../services/api";
 import "./login.css";
+import { setItem } from "../../services/storage";
 
 export default function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [emailEmpty, setEmailEmpty] = useState(false);
   const [passwordEmpty, setPasswordEmpty] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,10 +25,6 @@ export default function Login() {
     setPasswordEmpty(false);
     const { email, senha } = formData;
 
-    if (!email) {
-      return setEmailEmpty(true);
-    }
-
     if (!senha) {
       return setPasswordEmpty(true);
     }
@@ -36,7 +33,9 @@ export default function Login() {
       const response = await api.post("/login", formData);
       console.log(response.data);
 
-      // navigate("/dashboard")
+      setItem("token", response.data.token);
+
+      navigate("/dashboard");
     } catch (error) {
       setFormData({
         email: "",
