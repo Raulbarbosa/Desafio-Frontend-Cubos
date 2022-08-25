@@ -108,7 +108,7 @@ function Header({ title, titleClass }) {
 
   useEffect(() => {
     getUserData();
-  }, []);
+  });
 
   async function handleUpdateUser(event) {
     event.preventDefault();

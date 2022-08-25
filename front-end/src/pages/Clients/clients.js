@@ -11,9 +11,26 @@ import iconAddInvoice from "../../assets/icons/icon-add-invoice.svg";
 import iconClose from "../../assets/icons/icon-close.svg";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import { getItem } from "../../services/storage";
 
 function Clients() {
   const navigate = useNavigate();
+  const [clientData, setClientData] = useState([]);
+  const localClientData = [...clientData];
+  const [transactionForm, setTransactionForm] = useState({});
+  const [error, setError] = useState("");
+  const token = getItem("token");
+
+  useEffect(() => {
+    loadClients();
+  }, []);
+
+  const loadClients = async () => {
+    const response = await api.get("/customers");
+    setClientData(response.data);
+  };
 
   function handleOpenClientModal() {
     document.querySelector(".modal-client-wrapper").style.display = "flex";
@@ -23,7 +40,32 @@ function Clients() {
     document.querySelector(".modal-client-wrapper").style.display = "none";
   }
 
-  function handleAddClient() {}
+  function handleChangeInput(event) {
+    const { name, value } = event.target;
+    setTransactionForm({
+        ...transactionForm,
+        [name]: value
+    });
+}
+
+  async function handleAddClient(event) {
+    event.preventDefault();
+        let localTransactionForm = { ...transactionForm };
+        try {
+            await api.post('/customers', {
+                ...localTransactionForm,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setError('Transação adicionada com sucesso!');
+            handleCloseModal();
+            loadClients();
+        } catch (err) {
+            setError(err.response.data.error);
+        }
+  }
 
   return (
     <div className="dashboard-wrapper flex-row">
@@ -110,126 +152,20 @@ function Clients() {
               </h4>
               <h4 className="subtitle client-add-invoice">Criar Cobrança</h4>
             </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Paulo da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">paulo@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-defaulter subtitle">
-                Inadimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">João da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">joao@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-defaulter subtitle">
-                Inadimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Maria da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">maria@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-defaulter subtitle">
-                Inadimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Pedro da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">pedro@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-nondefaulter subtitle">
-                Adimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Marcos da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">marcos@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-nondefaulter subtitle">
-                Adimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Paulo da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">paulo@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-defaulter subtitle">
-                Inadimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">João da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">joao@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-defaulter subtitle">
-                Inadimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Maria da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">maria@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-defaulter subtitle">
-                Inadimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Pedro da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">pedro@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-nondefaulter subtitle">
-                Adimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
-            <div className="content-main-body-item flex-row align-center justify-between">
-              <span className="text-body">Marcos da Silva</span>
-              <span className="text-body">123.456.789-00</span>
-              <span className="text-body">marcos@email.com.br</span>
-              <span className="text-body">(11) 99999-9999</span>
-              <span className="client-status-nondefaulter subtitle">
-                Adimplente
-              </span>
-              <span className="client-add-invoice">
-                <img src={iconAddInvoice} alt="Criar Cobrança" />
-              </span>
-            </div>
+            {localClientData.map((client) => (
+              <div key={client.id} id={client.id} className="content-main-body-item flex-row align-center justify-between">
+                <span className="text-body">{client.name}</span>
+                <span className="text-body">{client.cpf}</span>
+                <span className="text-body">{client.email}</span>
+                <span className="text-body">{client.telefone}</span>
+                <span className="client-status-defaulter subtitle">
+                  Inadimplente
+                </span>
+                <span className="client-add-invoice">
+                  <img src={iconAddInvoice} alt="Criar Cobrança" />
+                </span>
+              </div>
+            ))}
           </div>
           <div className="modal-client-wrapper justify-center align-center">
             <div className="modal-client-content flex-column">
@@ -255,6 +191,7 @@ function Clients() {
                     className="input-text"
                     name="nome"
                     placeholder="Digite o nome"
+                    onChange={handleChangeInput}
                   />
                 </div>
                 <div className="flex-column align-start justify-start">
@@ -264,6 +201,7 @@ function Clients() {
                     className="input-text"
                     name="email"
                     placeholder="Digite o e-mail"
+                    onChange={handleChangeInput}
                   />
                 </div>
                 <div className="flex-row align-start justify-between">
@@ -277,6 +215,7 @@ function Clients() {
                       className="input-text"
                       name="cpf"
                       placeholder="Digite o CPF"
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div
@@ -289,6 +228,7 @@ function Clients() {
                       className="input-text"
                       name="telefone"
                       placeholder="Digite o telefone"
+                      onChange={handleChangeInput}
                     />
                   </div>
                 </div>
@@ -299,6 +239,7 @@ function Clients() {
                     className="input-text"
                     name="endereco"
                     placeholder="Digite o endereço"
+                    onChange={handleChangeInput}
                   />
                 </div>
                 <div className="flex-column align-start justify-start">
@@ -308,6 +249,7 @@ function Clients() {
                     className="input-text"
                     name="complemento"
                     placeholder="Digite o complemento"
+                    onChange={handleChangeInput}
                   />
                 </div>
                 <div className="flex-row align-start justify-between">
@@ -321,6 +263,7 @@ function Clients() {
                       className="input-text"
                       name="cep"
                       placeholder="Digite o CEP"
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div
@@ -333,6 +276,7 @@ function Clients() {
                       className="input-text"
                       name="bairro"
                       placeholder="Digite o bairro"
+                      onChange={handleChangeInput}
                     />
                   </div>
                 </div>
@@ -347,6 +291,7 @@ function Clients() {
                       className="input-text"
                       name="cidade"
                       placeholder="Digite a cidade"
+                      onChange={handleChangeInput}
                     />
                   </div>
                   <div
@@ -359,8 +304,19 @@ function Clients() {
                       className="input-text"
                       name="uf"
                       placeholder="Digite a UF"
+                      onChange={handleChangeInput}
                     />
                   </div>
+                </div>
+                <div className="flex-row align-start justify-center">{error}</div>
+                <div
+                  className="flex-row align-start justify-between"
+                  style={{ marginTop: "32px" }}
+                >
+                  <button className="button cancel">Cancelar</button>
+                  <button type="submit" className="button apply">
+                    Aplicar
+                  </button>
                 </div>
               </form>
             </div>
