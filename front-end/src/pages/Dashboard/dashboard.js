@@ -1,9 +1,9 @@
 import "./dashboard.css";
 import React from "react";
+import Header from "../../components/Header/Header";
 import iconHomeSelected from "../../assets/icons/icon-home-selected.png";
 import iconClients from "../../assets/icons/icon-clients.svg";
 import iconInvoices from "../../assets/icons/icon-invoices.png";
-import headerIconOptions from "../../assets/icons/header-icon-options.svg";
 import cardSummaryPaidIcon from "../../assets/icons/card-summary-paid-icon.svg";
 import cardSummaryOverdueIcon from "../../assets/icons/card-summary-overdue-icon.svg";
 import cardSummaryPreviewIcon from "../../assets/icons/card-summary-preview-icon.svg";
@@ -43,20 +43,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="content-wrapper flex-column justify-start align-center">
-        <div className="content-header flex-row justify-between align-center">
-          <h1 className="header-title">Resumo das cobranças</h1>
-          <div className="header-profile flex-row align-center justify-end">
-            <div className="header-profile-avatar flex-row align-center justify-center">
-              <span>PC</span>
-            </div>
-            <span className="header-profile-name">Philippi</span>
-            <img
-              className="header-icon-options"
-              src={headerIconOptions}
-              alt="Opções"
-            />
-          </div>
-        </div>
+        <Header title="Resumo das cobranças" titleClass="title-2"/>
         <div className="content-main flex-column align-start justify-end">
           <div className="card-summary-wrapper flex-row align-center justify-between">
             <div className="card-summary paid flex-row align-center justify-start">
