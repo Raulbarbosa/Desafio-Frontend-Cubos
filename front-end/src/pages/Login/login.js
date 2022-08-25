@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from '../../services/api';
 import "./login.css";
+import { setItem } from '../../services/storage';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -35,7 +36,6 @@ export default function Login() {
         email,
         senha
       })
-      console.log(response.data);
 
       if (!response.error) {
         setFormData({
@@ -43,9 +43,9 @@ export default function Login() {
           senha: ""
         })
 
+        setItem("token", response.data.token)
 
-
-        // navigate("/dashboard")
+        navigate("/dashboard")
 
       }
 
