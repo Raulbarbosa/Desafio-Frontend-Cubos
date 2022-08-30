@@ -3,11 +3,12 @@ import headerIconOptions from "../../assets/icons/header-icon-options.svg";
 import profileIconEdit from "../../assets/icons/profile-icon-edit.svg";
 import profileIconLogout from "../../assets/icons/profile-icon-logout.svg";
 import iconClose from "../../assets/icons/icon-close.svg";
-import imgUpdateSuccess from "../../assets/icons/img-update-success.svg";
+import imgProfileUpdate from "../../assets/images/img-update-success.svg";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { removeItem, getItem } from "../../services/storage";
+import InputPassword from "../InputPassword/InputPassword";
 
 function Header({ title, titleClass }) {
   const navigate = useNavigate();
@@ -19,8 +20,10 @@ function Header({ title, titleClass }) {
   function handleOpenOptions() {
     if (!showOptions) {
       document.querySelector(".profile-options-wrapper").style.display = "flex";
+    } else {
+      document.querySelector(".profile-options-wrapper").style.display = "none";
     }
-    setShowOptions(true);
+    setShowOptions(!showOptions);
   }
 
   function handleEditOptions() {
@@ -44,17 +47,7 @@ function Header({ title, titleClass }) {
 
   function handleCloseModal() {
     document.querySelector(".profile-modal-wrapper").style.display = "none";
-    document.querySelector(".confirmation-modal").style.display = "none";
-  }
-
-  function showTooltip(event) {
-    event.preventDefault();
-    event.currentTarget.nextElementSibling.style.display = "block";
-  }
-
-  function hideTooltip(event) {
-    event.preventDefault();
-    event.currentTarget.nextElementSibling.style.display = "none";
+    document.querySelector(".user-confirmation-modal").style.display = "none";
   }
 
   function handleChangeInput(event) {
@@ -92,7 +85,7 @@ function Header({ title, titleClass }) {
     return result;
   }
 
-  async function getUserData() {
+  const getUserData = useCallback(async () => {
     const response = await api.get("/users/", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -104,11 +97,11 @@ function Header({ title, titleClass }) {
       telefone: response.data.telefone,
       cpf: response.data.cpf,
     });
-  }
+  }, [token]);
 
   useEffect(() => {
     getUserData();
-  });
+  }, [getUserData]);
 
   async function handleUpdateUser(event) {
     event.preventDefault();
@@ -131,7 +124,9 @@ function Header({ title, titleClass }) {
         handleCloseModal();
       }, 2000);
     } catch (err) {
-      setError(err.response.data.error);
+      console.log(err);
+      // document.getElementById(err.response.data.nomeDoErro);
+      setError("");
     }
   }
 
@@ -144,7 +139,9 @@ function Header({ title, titleClass }) {
         <div className="header-profile-avatar flex-row align-center justify-center">
           <span>PC</span>
         </div>
-        <span className="header-profile-name">{parseName(userForm.nome).name}</span>
+        <span className="header-profile-name">
+          {parseName(userForm.nome).name}
+        </span>
         <div className="header-profile-options">
           <img
             className="header-icon-options"
@@ -188,12 +185,14 @@ function Header({ title, titleClass }) {
             <input
               name="nome"
               type="text"
-              value={userForm.nome ? userForm.nome : ""}
+              value={!userForm.nome ? "" : userForm.nome}
               className="input-text"
               placeholder="Digite seu nome"
               onChange={handleChangeInput}
             />
-            <span className="label-error">{error}</span>
+            <span id="nome" className="label-error">
+              {error}
+            </span>
             <span className="label">E-mail*</span>
             <input
               name="email"
@@ -240,54 +239,26 @@ function Header({ title, titleClass }) {
                 </span>
               </div>
             </div>
-            <div
-              className="flex-column"
-              style={{ gap: "4px", position: "relative" }}
-            >
-              <span className="label">Nova Senha *</span>
-              <input
-                name="senha"
-                type="password"
-                className="input-text"
-                placeholder="••••••••"
-                onFocus={showTooltip}
-                onBlur={hideTooltip}
-                onChange={handleChangeInput}
-              />
-              <span className="tooltip">
-                A senha deve conter um caracter maiúsculo, um caracter
-                minúsculo, um número e um caracter especial.
-              </span>
-              <span className="label-error">{error}</span>
-            </div>
-            <div
-              className="flex-column"
-              style={{ gap: "4px", position: "relative" }}
-            >
-              <span className="label">Confirmar Senha *</span>
-              <input
-                name="confirmPassword"
-                type="password"
-                className="input-text"
-                placeholder="••••••••"
-                onFocus={showTooltip}
-                onBlur={hideTooltip}
-                // onChange={handleChangeInput}
-              />
-              <span className="tooltip">
-                A senha deve conter um caracter maiúsculo, um caracter
-                minúsculo, um número e um caracter especial.
-              </span>
-              <span className="label-error">{error}</span>
-            </div>
+            <InputPassword
+              label="Nova Senha *"
+              name="senha"
+              onChangeProp={handleChangeInput}
+              error={error}
+            />
+            <InputPassword
+              label="Confirmar Senha *"
+              name="confirmarSenha"
+              onChangeProp={handleChangeInput}
+              error={error}
+            />
             <button type="submit" className="profile-button">
               Aplicar
             </button>
           </form>
         </div>
       </div>
-      <div className="confirmation-modal align-center justify-center">
-        <img src={imgUpdateSuccess} alt="Sucesso" />
+      <div className="user-confirmation-modal align-center justify-center">
+        <img src={imgProfileUpdate} alt="Sucesso" />
       </div>
     </div>
   );

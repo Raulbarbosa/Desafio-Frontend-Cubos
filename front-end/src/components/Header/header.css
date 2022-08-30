@@ -45,6 +45,7 @@
 .profile-options-wrapper {
   position: absolute;
   display: none;
+  z-index: 10;
   padding-top: 6px;
   top: 55px;
   right: 30px;
@@ -58,14 +59,17 @@
 .profile-modal-wrapper {
   position: absolute;
   display: none;
+  z-index: 20;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -108px;
+  width: 100vw;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .profile-modal {
+  display: none;
   position: absolute;
   top: calc(50% - 320px);
   left: calc(50% - 245px);
@@ -147,12 +151,15 @@
   padding: 8px;
 }
 
-.confirmation-modal {
-  position: absolute;
+.user-confirmation-modal {
   display: none;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 400px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 32px 64px;
+  gap: 4px;
 }
