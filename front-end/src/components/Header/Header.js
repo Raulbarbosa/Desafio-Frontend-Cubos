@@ -20,6 +20,10 @@ function Header({ title, titleClass }) {
   function handleOpenOptions() {
     if (!showOptions) {
       document.querySelector(".profile-options-wrapper").style.display = "flex";
+      setInterval(() => {
+        document.querySelector(".profile-options-wrapper").style.display =
+          "none";
+      }, 5000);
     } else {
       document.querySelector(".profile-options-wrapper").style.display = "none";
     }
