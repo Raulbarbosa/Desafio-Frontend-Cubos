@@ -17,33 +17,30 @@ function Dashboard() {
   return (
     <div className="dashboard-wrapper flex-row">
       <div className="sidebar flex-column align-start">
-        <div className="sidebar-nav active flex-column align-center justify-end">
-          <img
-            src={iconHomeSelected}
-            alt="Home"
-            onClick={() => navigate("/dashboard")}
-          />
+        <div
+          className="sidebar-nav active flex-column align-center justify-end"
+          onClick={() => navigate("/dashboard")}
+        >
+          <img src={iconHomeSelected} alt="Home" />
           <h2 className="sidebar-nav-title active">Home</h2>
         </div>
-        <div className="sidebar-nav flex-column align-center justify-end">
-          <img
-            src={iconClients}
-            alt="Clientes"
-            onClick={() => navigate("/clientes")}
-          />
+        <div
+          className="sidebar-nav flex-column align-center justify-end"
+          onClick={() => navigate("/clientes")}
+        >
+          <img src={iconClients} alt="Clientes" />
           <h2 className="sidebar-nav-title">Clientes</h2>
         </div>
-        <div className="sidebar-nav flex-column align-center justify-end">
-          <img
-            src={iconInvoices}
-            alt="Cobranças"
-            onClick={() => navigate("/cobrancas")}
-          />
+        <div
+          className="sidebar-nav flex-column align-center justify-end"
+          onClick={() => navigate("/cobrancas")}
+        >
+          <img src={iconInvoices} alt="Cobranças" />
           <h2 className="sidebar-nav-title">Cobranças</h2>
         </div>
       </div>
       <div className="content-wrapper flex-column justify-start align-center">
-        <Header title="Resumo das cobranças" titleClass="title-2"/>
+        <Header title="Resumo das cobranças" titleClass="title-2" />
         <div className="content-main flex-column align-start justify-end">
           <div className="card-summary-wrapper flex-row align-center justify-between">
             <div className="card-summary paid flex-row align-center justify-start">
@@ -72,7 +69,9 @@ function Dashboard() {
             <div className="card-details flex-column align-start justify-start">
               <div className="card-details-header flex-row align-center justify-between">
                 <h3 className="card-details-title">Cobranças Pagas</h3>
-                <h5 className="card-details-value flex align-center justify-center paid">05</h5>
+                <h5 className="card-details-value flex align-center justify-center paid">
+                  05
+                </h5>
               </div>
               <div className="card-details-body flex-column align-center justify-start">
                 <div className="card-details-body-title flex-row align-center justify-between">
@@ -111,7 +110,9 @@ function Dashboard() {
             <div className="card-details flex-column align-start justify-start">
               <div className="card-details-header flex-row align-center justify-between">
                 <h3 className="card-details-title ">Cobranças Vencidas</h3>
-                <h5 className="card-details-value flex align-center justify-center overdue">08</h5>
+                <h5 className="card-details-value flex align-center justify-center overdue">
+                  08
+                </h5>
               </div>
               <div className="card-details-body flex-column align-center justify-start">
                 <div className="card-details-body-title flex-row align-center justify-between">
@@ -150,7 +151,9 @@ function Dashboard() {
             <div className="card-details flex-column align-start justify-start">
               <div className="card-details-header flex-row align-center justify-between">
                 <h3 className="card-details-title">Cobranças Previstas</h3>
-                <h5 className="card-details-value flex align-center justify-center preview">10</h5>
+                <h5 className="card-details-value flex align-center justify-center preview">
+                  10
+                </h5>
               </div>
               <div className="card-details-body flex-column align-center justify-start">
                 <div className="card-details-body-title flex-row align-center justify-between">
@@ -195,7 +198,9 @@ function Dashboard() {
                   alt="Clientes Inadimplentes"
                 />
                 <h3 className="card-clients-title">Clientes Inadimplentes</h3>
-                <h5 className="card-clients-value flex align-center justify-center overdue">05</h5>
+                <h5 className="card-clients-value flex align-center justify-center overdue">
+                  05
+                </h5>
               </div>
               <div className="card-clients-body flex-column align-center justify-start">
                 <div className="card-clients-body-title flex-row align-center justify-between">
@@ -238,7 +243,9 @@ function Dashboard() {
                   alt="Clientes Adimplentes"
                 />
                 <h3 className="card-clients-title">Clientes Adimplentes</h3>
-                <h5 className="card-clients-value flex align-center justify-center paid">05</h5>
+                <h5 className="card-clients-value flex align-center justify-center paid">
+                  05
+                </h5>
               </div>
               <div className="card-clients-body flex-column align-center justify-start">
                 <div className="card-clients-body-title flex-row align-center justify-between">

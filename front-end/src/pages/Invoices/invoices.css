@@ -1,0 +1,31 @@
+.content-main-header-filter {
+  cursor: pointer;
+}
+
+.invoice-paid {
+  color: var(--color-aqua-dark) !important; ;
+  background-color: var(--color-aqua-light) ;
+  width: 80px !important;
+  border-radius: 8px;
+  text-align: center !important;
+}
+
+.invoice-expired {
+  color: var(--color-red-dark) !important;
+  background-color: var(--color-red-light);
+  width: 100px !important;
+  border-radius: 8px;
+  text-align: center !important;
+}
+
+.invoice-pending {
+  color: var(--color-yellow-dark) !important;
+  background-color: var(--color-yellow-light);
+  width: 100px !important;
+  border-radius: 8px;
+  text-align: center !important;
+}
+
+.invoice-action img {
+  cursor: pointer;
+}
